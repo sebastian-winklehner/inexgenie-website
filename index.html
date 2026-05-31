@@ -7,7 +7,7 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: #f5f5f7;
             color: #1d1d1f;
             padding: 24px 16px;
@@ -19,29 +19,47 @@
             text-align: center;
             padding: 40px 0 32px;
         }
-        header h1 { font-size: 2rem; font-weight: 700; }
-        header p { color: #6e6e73; margin-top: 8px; font-size: 0.95rem; }
+        header h1 { font-size: 2.2rem; font-weight: 700; color: #1d1d1f; letter-spacing: -0.02em; }
+        header p { color: #6e6e73; margin-top: 8px; font-size: 1rem; }
         .lang-switcher {
             display: flex; gap: 8px; flex-wrap: wrap;
             justify-content: center; margin-bottom: 32px;
         }
         .lang-switcher button {
-            padding: 6px 14px; border: 1px solid #d2d2d7; border-radius: 8px;
-            background: white; cursor: pointer; font-size: 0.85rem;
-            transition: background 0.15s;
+            padding: 8px 16px; border: 1px solid #d2d2d7; border-radius: 20px;
+            background: white; cursor: pointer; font-size: 0.85rem; font-weight: 500;
+            transition: all 0.2s ease;
+            color: #1d1d1f;
         }
         .lang-switcher button.active, .lang-switcher button:hover {
             background: #0071e3; color: white; border-color: #0071e3;
         }
         .card {
             background: white; border-radius: 16px; padding: 24px;
-            margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.2s ease;
         }
-        .card h2 { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; color: #0071e3; }
-        .card p, .card ul { font-size: 0.93rem; color: #444; }
-        .card ul { padding-left: 20px; }
-        .card ul li { margin-bottom: 4px; }
-        footer { text-align: center; margin-top: 40px; color: #6e6e73; font-size: 0.82rem; padding-bottom: 40px; }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .card h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; color: #0071e3; border-bottom: 1px solid #f5f5f7; padding-bottom: 8px; }
+        .card p, .card ul { font-size: 0.93rem; color: #3a3a3c; }
+        .card p { margin-bottom: 10px; }
+        .card p:last-child { margin-bottom: 0; }
+        .card ul { padding-left: 20px; margin-bottom: 10px; }
+        .card ul li { margin-bottom: 6px; }
+        .card strong { color: #1d1d1f; }
+        .alert-placeholder {
+            background: #fff8f2;
+            border-left: 4px solid #ff9500;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 12px;
+            font-size: 0.88rem;
+            color: #8e8e93;
+        }
+        footer { text-align: center; margin-top: 40px; color: #8e8e93; font-size: 0.85rem; padding-bottom: 40px; border-top: 1px solid #d2d2d7; padding-top: 24px; }
         .lang-content { display: none; }
         .lang-content.active { display: block; }
     </style>
@@ -69,36 +87,87 @@
 <div class="lang-content active" id="lang-de">
     <div class="card">
         <h2>1. Verantwortlicher</h2>
-        <p>Verantwortlich für diese App im Sinne der DSGVO ist der Entwickler. Kontakt: [DEINE E-MAIL HIER EINTRAGEN]</p>
+        <div class="alert-placeholder">Bitte trage deine Kontaktdaten hier ein:</div>
+        <p><strong>Entwickler:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Anschrift:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-Mail:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Datenspeicherung</h2>
-        <p>InExGenie speichert alle Daten ausschließlich lokal auf deinem Gerät. Es werden keine persönlichen Daten auf externen Servern gespeichert, übertragen oder mit Dritten geteilt.</p>
+        <h2>2. Grundsätze der Datenverarbeitung</h2>
+        <p>Der Schutz deiner Privatsphäre steht bei uns an oberster Stelle. InExGenie ist als rein lokale Anwendung konzipiert. Das bedeutet: Alle von dir eingegebenen Finanzdaten, Notizen, Kategorien und verknüpften Medien verbleiben ausschließlich lokal auf deinem eigenen Gerät. Es findet keine Übermittlung deiner Finanzdaten an uns oder an sonstige externe Server statt.</p>
     </div>
     <div class="card">
-        <h2>3. Berechtigungen</h2>
+        <h2>3. Erhobene Daten &amp; Zweck</h2>
+        <p>Die App verarbeitet folgende Kategorien von Daten ausschließlich zur Bereitstellung der App-Funktionen auf deinem Gerät:</p>
         <ul>
-            <li><strong>Standort:</strong> Wird verwendet, um den Ort von Transaktionen zu erfassen. Nur bei aktivierter Option.</li>
-            <li><strong>Kamera & Fotos:</strong> Für das Hinzufügen von Fotos zu Einträgen und Kategorie-Bildern.</li>
-            <li><strong>Face ID / Touch ID:</strong> Zur sicheren Sperrung der App (nur biometrische Verifikation, keine Daten werden gespeichert).</li>
+            <li><strong>Transaktionsdaten:</strong> Einnahmen, Ausgaben, Beträge, Verträge, Konten, Budgets und Spartöpfe zur persönlichen Budgetkontrolle.</li>
+            <li><strong>Standortdaten (optional):</strong> Geografische Koordinaten zur Verortung von Transaktionen, sofern freigegeben.</li>
+            <li><strong>Kamerabilder &amp; Fotos (optional):</strong> Belege oder benutzerdefinierte Bilder zur visuellen Zuordnung in Einträgen und Kategorien.</li>
+            <li><strong>Biometrische Daten (optional):</strong> Face ID / Touch ID zur App-Sperre (Verarbeitung erfolgt ausschließlich verschlüsselt durch das iOS-System, wir haben keinen Zugriff darauf).</li>
         </ul>
-        <p style="margin-top:10px;">Alle Berechtigungen können jederzeit in den iOS-Einstellungen unter «InExGenie» widerrufen werden.</p>
     </div>
     <div class="card">
-        <h2>4. Haftungsausschluss</h2>
-        <p>InExGenie ist ein Werkzeug zur persönlichen Finanzverwaltung. Die App stellt keine Finanzberatung dar. Für finanzielle Entscheidungen wird empfohlen, einen qualifizierten Berater zu konsultieren. Der Entwickler übernimmt keine Haftung für Datenverlust oder fehlerhafte Berechnungen.</p>
+        <h2>4. Rechtsgrundlage</h2>
+        <p>Die Verarbeitung deiner Daten stützt sich auf folgende Rechtsgrundlagen im Sinne der DSGVO:</p>
+        <ul>
+            <li><strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Erforderlich zur Erfüllung des Vertrages (Bereitstellung aller Funktionen der App).</li>
+            <li><strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Deine ausdrückliche Einwilligung zur Verarbeitung von optionalen Standortdaten und Medien (Kamera/Fotos) sowie der Nutzung biometrischer Systemfunktionen.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Datenexport & Löschung</h2>
-        <p>Über die App-Einstellungen können alle Daten exportiert oder vollständig gelöscht werden. Bei Deinstallation der App werden alle lokalen Daten entfernt.</p>
+        <h2>5. App-Berechtigungen</h2>
+        <p>Zur Bereitstellung bestimmter Funktionen benötigt die App Zugriff auf System-Schnittstellen:</p>
+        <ul>
+            <li><strong>Standort (NSLocationWhenInUseUsageDescription):</strong> Ermöglicht die optionale Zuordnung eines Ortes zu deinen Umsätzen.</li>
+            <li><strong>Kamera &amp; Fotos (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Ermöglicht das Hinzufügen von Belegfotos und das Erstellen individueller Kategoriebilder.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Ermöglicht die optionale lokale Sicherung der App vor unbefugtem Zugriff.</li>
+        </ul>
+        <p>Alle Berechtigungen können jederzeit in den iOS-Einstellungen unter dem Menüpunkt „InExGenie“ aktiviert oder deaktiviert werden.</p>
     </div>
     <div class="card">
-        <h2>6. Änderungen</h2>
-        <p>Diese Datenschutzerklärung kann bei Bedarf aktualisiert werden. Wesentliche Änderungen werden in der App kommuniziert.</p>
+        <h2>6. Apple als Plattform</h2>
+        <p>Die Verteilung der App erfolgt über den Apple App Store. Apple verarbeitet hierbei Store-Metadaten, Transaktions- und Download-Informationen. Sofern du iCloud-Backups aktiviert hast, werden deine lokalen App-Daten standardmäßig in deiner persönlichen iCloud gesichert. Auf diese Übertragungen und Backups hat der Entwickler keinen Zugriff. Es gelten die Datenschutzrichtlinien von Apple Inc. (One Apple Park Way, Cupertino, CA 95014, USA).</p>
     </div>
     <div class="card">
-        <h2>7. Letzte Aktualisierung</h2>
-        <p>Mai 2026</p>
+        <h2>7. Speicherdauer</h2>
+        <p>Deine Daten verbleiben auf deinem Gerät, solange die App installiert ist. Bei einer Deinstallation der App werden alle lokalen Daten unwiderruflich von deinem Gerät gelöscht. Sofern du ein iCloud-Backup nutzt, werden die App-Daten bei der Erstellung des Backups gesichert und verbleiben dort, bis das Backup aktualisiert oder gelöscht wird.</p>
+    </div>
+    <div class="card">
+        <h2>8. Sicherheitsmaßnahmen</h2>
+        <p>Wir schützen deine Daten durch konsequente Nutzung der iOS-Sicherheitsarchitektur:</p>
+        <ul>
+            <li><strong>Lokale Verschlüsselung:</strong> Alle Daten sind durch die Hardware-basierte iOS Data Protection verschlüsselt.</li>
+            <li><strong>Netzwerk-Sandboxing:</strong> Deine Finanzdaten werden zu keinem Zeitpunkt an das Internet übertragen.</li>
+            <li><strong>App Lock:</strong> Du kannst eine zusätzliche Hürde durch Aktivierung der biometrischen Sperre (Face ID / Touch ID) in den App-Einstellungen einrichten.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Deine Rechte (Betroffenenrechte)</h2>
+        <p>Da alle Daten ausschließlich auf deinem Gerät liegen und wir keinen Zugriff darauf haben, kannst du deine Rechte direkt selbst ausüben:</p>
+        <ul>
+            <li><strong>Auskunft &amp; Übertragbarkeit (Art. 15, 20 DSGVO):</strong> Du kannst alle Daten selbstständig über die App-Einstellungen exportieren (JSON-Export).</li>
+            <li><strong>Löschung &amp; Berichtigung (Art. 16, 17 DSGVO):</strong> Du kannst Einträge jederzeit in der App bearbeiten, löschen oder alle Daten über die App-Einstellungen vollständig zurücksetzen.</li>
+            <li><strong>Widerspruch &amp; Widerruf (Art. 21 DSGVO):</strong> Du kannst Einwilligungen für Standorte oder Fotos jederzeit über die iOS-Einstellungen widerrufen.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Beschwerderecht</h2>
+        <p>Gemäß Art. 77 DSGVO hast du das Recht, dich bei einer Aufsichtsbehörde zu beschweren, wenn du der Ansicht bist, dass die Verarbeitung deiner personenbezogenen Daten gegen die DSGVO verstößt. Eine Liste der Aufsichtsbehörden findest du unter dem jeweiligen nationalen Portal oder der europäischen Datenschutzkommission.</p>
+        <div class="alert-placeholder">Bitte trage deine zuständige Aufsichtsbehörde hier ein:</div>
+        <p><strong>Zuständige Behörde:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Kinderschutz</h2>
+        <p>Die Nutzung der App wird im App Store mit einer Altersfreigabe ab 17 Jahren ausgewiesen. Wir erheben oder verarbeiten wissentlich keine Daten von Kindern unter 13 Jahren (COPPA-Konformität). Solltest du feststellen, dass ein Kind unter 13 Jahren Daten in der App eingegeben hat, kannst du diese durch Löschen der App rückstandslos entfernen.</p>
+    </div>
+    <div class="card">
+        <h2>12. Haftungsausschluss</h2>
+        <p>InExGenie dient ausschließlich der persönlichen Dokumentation und Budgetplanung. Die bereitgestellten Funktionen, Berechnungen und Statistiken stellen keine Finanz-, Steuer- oder Rechtsberatung dar. Jegliche finanzielle Entscheidungen triffst du in eigener Verantwortung. Der Entwickler übernimmt keine Haftung für fehlerhafte Dateneingaben, Berechnungsfehler oder Datenverluste, die durch Systemabstürze oder Hardwaredefekte entstehen.</p>
+    </div>
+    <div class="card">
+        <h2>13. Änderungen &amp; letzte Aktualisierung</h2>
+        <p>Diese Datenschutzerklärung kann angepasst werden, um sie an veränderte rechtliche Vorgaben oder neue App-Funktionen anzupassen. Die aktuelle Version ist stets über diesen Link sowie in der App abrufbar.</p>
+        <p><strong>Letzte Aktualisierung:</strong> Mai 2026</p>
     </div>
 </div>
 
@@ -106,36 +175,88 @@
 <div class="lang-content" id="lang-en">
     <div class="card">
         <h2>1. Controller</h2>
-        <p>The developer is responsible for this app under GDPR. Contact: [YOUR EMAIL HERE]</p>
+        <div class="alert-placeholder">Please enter your contact details here:</div>
+        <p><strong>Developer:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Address:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>Email:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Data Storage</h2>
-        <p>InExGenie stores all data exclusively on your device. No personal data is stored on external servers, transmitted, or shared with third parties.</p>
+        <h2>2. Principles of Data Processing</h2>
+        <p>Protecting your privacy is our highest priority. InExGenie is designed as a purely local application. This means: All financial data, notes, categories, and linked media you enter remain exclusively local on your own device. No financial data is transmitted to us or to any other external servers.</p>
     </div>
     <div class="card">
-        <h2>3. Permissions</h2>
+        <h2>3. Collected Data &amp; Purpose</h2>
+        <p>The app processes the following categories of data solely to provide the app functions on your device:</p>
         <ul>
-            <li><strong>Location:</strong> Used to record the location of transactions. Only when the option is enabled.</li>
-            <li><strong>Camera &amp; Photos:</strong> For adding photos to entries and category images.</li>
-            <li><strong>Face ID / Touch ID:</strong> For securely locking the app (biometric verification only, no data is stored).</li>
+            <li><strong>Transaction Data:</strong> Income, expenses, amounts, contracts, accounts, budgets, and savings pots for personal budget control.</li>
+            <li><strong>Location Data (optional):</strong> Geographic coordinates to locate transactions, if enabled.</li>
+            <li><strong>Camera Images &amp; Photos (optional):</strong> Receipts or custom images for visual association in entries and categories.</li>
+            <li><strong>Biometric Data (optional):</strong> Face ID / Touch ID for app lock (processing is performed exclusively encrypted by the iOS system; we have no access to it).</li>
         </ul>
-        <p style="margin-top:10px;">All permissions can be revoked at any time in iOS Settings under "InExGenie".</p>
     </div>
     <div class="card">
-        <h2>4. Disclaimer</h2>
-        <p>InExGenie is a personal finance management tool. The app does not constitute financial advice. For financial decisions, it is recommended to consult a qualified advisor. The developer assumes no liability for data loss or incorrect calculations.</p>
+        <h2>4. Legal Basis</h2>
+        <p>The processing of your data is based on the following legal grounds under the GDPR:</p>
+        <ul>
+            <li><strong>Art. 6 (1) (b) GDPR:</strong> Necessary for the performance of a contract (provision of all functions of the app).</li>
+            <li><strong>Art. 6 (1) (a) GDPR:</strong> Your explicit consent for processing optional location data and media (camera/photos) as well as the use of biometric system functions.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Data Export &amp; Deletion</h2>
-        <p>All data can be exported or completely deleted via the app settings. Uninstalling the app removes all local data.</p>
+        <h2>5. App Permissions</h2>
+        <p>To provide certain functions, the app requires access to system interfaces:</p>
+        <ul>
+            <li><strong>Location (NSLocationWhenInUseUsageDescription):</strong> Allows optional location mapping for your transactions.</li>
+            <li><strong>Camera &amp; Photos (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Allows adding receipt photos and creating custom category images.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Allows optional local locking of the app to prevent unauthorized access.</li>
+        </ul>
+        <p>All permissions can be activated or deactivated at any time in the iOS settings under the "InExGenie" menu item.</p>
     </div>
     <div class="card">
-        <h2>6. Changes</h2>
-        <p>This privacy policy may be updated when necessary. Significant changes will be communicated within the app.</p>
+        <h2>6. Apple as Platform</h2>
+        <p>The app is distributed via the Apple App Store. Apple processes store metadata, transaction, and download information. If you have enabled iCloud Backups, your local app data is backed up to your personal iCloud by default. The developer has no access to these transmissions and backups. The privacy policies of Apple Inc. (One Apple Park Way, Cupertino, CA 95014, USA) apply.</p>
     </div>
     <div class="card">
-        <h2>7. Last Updated</h2>
-        <p>May 2026</p>
+        <h2>7. Storage Duration</h2>
+        <p>Your data remains on your device as long as the app is installed. If you uninstall the app, all local data is irretrievably deleted from your device. If you use iCloud backup, the app data is secured when the backup is created and remains there until the backup is updated or deleted.</p>
+    </div>
+    <div class="card">
+        <h2>8. Security Measures</h2>
+        <p>We protect your data by consistently using the iOS security architecture:</p>
+        <ul>
+            <li><strong>Local Encryption:</strong> All data is encrypted by hardware-based iOS Data Protection.</li>
+            <li><strong>Network Sandboxing:</strong> Your financial data is never transmitted to the internet.</li>
+            <li><strong>App Lock:</strong> You can set up an additional barrier by enabling the biometric lock (Face ID / Touch ID) in the app settings.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Your Rights</h2>
+        <p>Since all data lies exclusively on your device and we have no access to it, you can exercise your rights directly yourself:</p>
+        <ul>
+            <li><strong>Access &amp; Portability (Art. 15, 20 GDPR):</strong> You can export all data yourself via the app settings (JSON export).</li>
+            <li><strong>Erasure &amp; Rectification (Art. 16, 17 GDPR):</strong> You can edit or delete entries in the app at any time, or completely reset all data in the app settings.</li>
+            <li><strong>Objection &amp; Revocation (Art. 21 GDPR):</strong> You can revoke permissions for location or photos at any time via the iOS settings.</li>
+        </ul>
+        <p><strong>CCPA / California Consumer Privacy Act:</strong> We do not sell your personal information. You have the right to request deletion and access, which you can execute directly on your device by deleting or exporting your data.</p>
+    </div>
+    <div class="card">
+        <h2>10. Right to Lodge a Complaint</h2>
+        <p>In accordance with Art. 77 GDPR, you have the right to lodge a complaint with a supervisory authority if you believe that the processing of your personal data violates the GDPR. You can find a list of supervisory authorities under the respective national portal or the European Data Protection Board.</p>
+        <div class="alert-placeholder">Please enter your competent supervisory authority here:</div>
+        <p><strong>Competent Authority:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Protection of Minors</h2>
+        <p>The use of the app is designated in the App Store with an age rating of 17+. We do not knowingly collect or process data from children under 13 years of age (COPPA compliance). If you discover that a child under 13 has entered data in the app, you can remove it completely by deleting the app.</p>
+    </div>
+    <div class="card">
+        <h2>12. Disclaimer</h2>
+        <p>InExGenie is intended solely for personal documentation and budget planning. The provided functions, calculations, and statistics do not constitute financial, tax, or legal advice. Any financial decisions you make are your own responsibility. The developer assumes no liability for incorrect data entry, calculation errors, or data loss caused by system crashes or hardware defects.</p>
+    </div>
+    <div class="card">
+        <h2>13. Changes &amp; Last Updated</h2>
+        <p>This privacy policy may be adjusted to adapt to changing legal requirements or new app features. The current version is always available via this link and in the app.</p>
+        <p><strong>Last Updated:</strong> May 2026</p>
     </div>
 </div>
 
@@ -143,36 +264,87 @@
 <div class="lang-content" id="lang-fr">
     <div class="card">
         <h2>1. Responsable</h2>
-        <p>Le développeur est responsable de cette application au sens du RGPD. Contact : [VOTRE E-MAIL ICI]</p>
+        <div class="alert-placeholder">Veuillez saisir vos coordonnées ici :</div>
+        <p><strong>Développeur :</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Adresse :</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-mail :</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Stockage des données</h2>
-        <p>InExGenie stocke toutes les données exclusivement sur votre appareil. Aucune donnée personnelle n'est stockée sur des serveurs externes, transmise ou partagée avec des tiers.</p>
+        <h2>2. Principes du traitement des données</h2>
+        <p>La protection de votre vie privée est notre priorité absolue. InExGenie est conçue comme une application purement locale. Cela signifie que toutes les données financières, notes, catégories et médias associés que vous saisissez restent exclusivement sur votre propre appareil. Aucune transmission de vos données financières vers nous ou vers d'autres serveurs externes n'a lieu.</p>
     </div>
     <div class="card">
-        <h2>3. Autorisations</h2>
+        <h2>3. Données collectées et finalité</h2>
+        <p>L'application traite les catégories de données suivantes uniquement pour fournir les fonctions de l'application sur votre appareil :</p>
         <ul>
-            <li><strong>Localisation :</strong> Utilisée pour enregistrer le lieu des transactions. Uniquement lorsque l'option est activée.</li>
-            <li><strong>Appareil photo et Photos :</strong> Pour ajouter des photos aux entrées et des images de catégories.</li>
-            <li><strong>Face ID / Touch ID :</strong> Pour verrouiller l'application en toute sécurité (vérification biométrique uniquement, aucune donnée n'est stockée).</li>
+            <li><strong>Données de transaction :</strong> Revenus, dépenses, montants, contrats, comptes, budgets et tirelires pour le contrôle du budget personnel.</li>
+            <li><strong>Données de localisation (facultatif) :</strong> Coordonnées géographiques pour situer les transactions, si cette option est activée.</li>
+            <li><strong>Images de l'appareil photo et photos (facultatif) :</strong> Reçus ou images personnalisées pour une association visuelle dans les entrées et les catégories.</li>
+            <li><strong>Données biométriques (facultatif) :</strong> Face ID / Touch ID pour le verrouillage de l'application (le traitement est effectué de manière cryptée exclusivement par le système iOS ; nous n'y avons pas accès).</li>
         </ul>
-        <p style="margin-top:10px;">Toutes les autorisations peuvent être révoquées à tout moment dans les Réglages iOS sous « InExGenie ».</p>
     </div>
     <div class="card">
-        <h2>4. Avertissement</h2>
-        <p>InExGenie est un outil de gestion des finances personnelles. L'application ne constitue pas un conseil financier. Pour les décisions financières, il est recommandé de consulter un conseiller qualifié. Le développeur décline toute responsabilité en cas de perte de données ou de calculs incorrects.</p>
+        <h2>4. Base juridique</h2>
+        <p>Le traitement de vos données repose sur les bases juridiques suivantes au sens du RGPD :</p>
+        <ul>
+            <li><strong>Art. 6, al. 1, let. b du RGPD :</strong> Nécessaire à l'exécution du contrat (fourniture de toutes les fonctions de l'application).</li>
+            <li><strong>Art. 6, al. 1, let. a du RGPD :</strong> Votre consentement explicite pour le traitement des données de localisation et des médias facultatifs (appareil photo/photos) ainsi que pour l'utilisation des fonctions biométriques du système.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Export et suppression des données</h2>
-        <p>Toutes les données peuvent être exportées ou entièrement supprimées via les paramètres de l'application. La désinstallation de l'application supprime toutes les données locales.</p>
+        <h2>5. Autorisations de l'application</h2>
+        <p>Pour fournir certaines fonctions, l'application doit accéder aux interfaces du système :</p>
+        <ul>
+            <li><strong>Localisation (NSLocationWhenInUseUsageDescription) :</strong> Permet d'associer facultativement un lieu à vos transactions.</li>
+            <li><strong>Appareil photo et Photos (NSCameraUsageDescription / NSPhotoLibraryUsageDescription) :</strong> Permet d'ajouter des photos de reçus et de créer des images de catégories personnalisées.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription) :</strong> Permet le verrouillage local facultatif de l'application pour empêcher tout accès non autorisé.</li>
+        </ul>
+        <p>Toutes les autorisations peuvent être activées ou désactivées à tout moment dans les réglages iOS sous la rubrique « InExGenie ».</p>
     </div>
     <div class="card">
-        <h2>6. Modifications</h2>
-        <p>Cette politique de confidentialité peut être mise à jour si nécessaire. Les modifications importantes seront communiquées dans l'application.</p>
+        <h2>6. Apple en tant que plateforme</h2>
+        <p>L'application est distribuée via l'Apple App Store. Apple traite à cette occasion des métadonnées du Store, des informations sur les transactions et les téléchargements. Si vous avez activé les sauvegardes iCloud, vos données d'application locales sont sauvegardées par défaut dans votre iCloud personnel. Le développeur n'a pas accès à ces transmissions et sauvegardes. Les politiques de confidentialité d'Apple Inc. (One Apple Park Way, Cupertino, CA 95014, USA) s'appliquent.</p>
     </div>
     <div class="card">
-        <h2>7. Dernière mise à jour</h2>
-        <p>Mai 2026</p>
+        <h2>7. Durée de conservation</h2>
+        <p>Vos données restent sur votre appareil tant que l'application est installée. Si vous désinstallez l'application, toutes les données locales sont définitivement supprimées de votre appareil. Si vous utilisez la sauvegarde iCloud, les données de l'application sont sécurisées lors de la création de la sauvegarde et y restent jusqu'à ce que la sauvegarde soit mise à jour ou supprimée.</p>
+    </div>
+    <div class="card">
+        <h2>8. Mesures de sécurité</h2>
+        <p>Nous protégeons vos données en utilisant systématiquement l'architecture de sécurité d'iOS :</p>
+        <ul>
+            <li><strong>Cryptage local :</strong> Toutes les données sont cryptées par la protection des données matérielle d'iOS.</li>
+            <li><strong>Réseau cloisonné (Sandboxing) :</strong> Vos données financières ne sont à aucun moment transmises à Internet.</li>
+            <li><strong>Verrouillage de l'application :</strong> Vous pouvez configurer une barrière supplémentaire en activant le verrouillage biométrique (Face ID / Touch ID) dans les réglages de l'application.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Vos droits</h2>
+        <p>Comme toutes les données se trouvent exclusivement sur votre appareil et que nous n'y avons pas accès, vous pouvez exercer vos droits directement vous-même :</p>
+        <ul>
+            <li><strong>Accès et portabilité (Art. 15, 20 du RGPD) :</strong> Vous pouvez exporter toutes les données vous-même via les réglages de l'application (exportation JSON).</li>
+            <li><strong>Effacement et rectification (Art. 16, 17 du RGPD) :</strong> Vous pouvez modifier ou supprimer des entrées dans l'application à tout moment, ou réinitialiser complètement toutes les données dans les réglages de l'application.</li>
+            <li><strong>Opposition et retrait (Art. 21 du RGPD) :</strong> Vous pouvez retirer vos autorisations de localisation ou de photos à tout moment via les réglages d'iOS.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Droit de déposer une plainte</h2>
+        <p>Conformément à l'art. 77 du RGPD, vous avez le droit de déposer une plainte auprès d'une autorité de contrôle si vous estimez que le traitement de vos données personnelles viole le RGPD. Vous trouverez une liste des autorités de contrôle sur le portail national correspondant ou sur le site du Comité européen de la protection des données.</p>
+        <div class="alert-placeholder">Veuillez saisir votre autorité de contrôle compétente ici :</div>
+        <p><strong>Autorité compétente :</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Protection des mineurs</h2>
+        <p>L'utilisation de l'application est signalée dans l'App Store avec une limite d'âge de 17 ans et plus. Nous ne collectons ni ne traitons sciemment des données d'enfants de moins de 13 ans (conformité COPPA). Si vous découvrez qu'un enfant de moins de 13 ans a saisi des données dans l'application, vous pouvez les supprimer complètement en désinstallant l'application.</p>
+    </div>
+    <div class="card">
+        <h2>12. Avertissement</h2>
+        <p>InExGenie est destinée uniquement à la documentation personnelle et à la planification budgétaire. Les fonctions, calculs et statistiques fournis ne constituent pas des conseils financiers, fiscaux ou juridiques. Toutes les décisions financières que vous prenez relèvent de votre propre responsabilité. Le développeur décline toute responsabilité en cas de saisie incorrecte des données, d'erreurs de calcul ou de perte de données causée par des pannes de système ou des défauts matériels.</p>
+    </div>
+    <div class="card">
+        <h2>13. Modifications et dernière mise à jour</h2>
+        <p>Cette politique de confidentialité peut être adaptée pour se conformer aux exigences légales changeantes ou aux nouvelles fonctionnalités de l'application. La version actuelle est toujours disponible via ce lien et dans l'application.</p>
+        <p><strong>Dernière mise à jour :</strong> Mai 2026</p>
     </div>
 </div>
 
@@ -180,36 +352,87 @@
 <div class="lang-content" id="lang-it">
     <div class="card">
         <h2>1. Titolare</h2>
-        <p>Lo sviluppatore è responsabile di questa app ai sensi del GDPR. Contatto: [LA TUA EMAIL QUI]</p>
+        <div class="alert-placeholder">Inserisci qui i tuoi dati di contatto:</div>
+        <p><strong>Sviluppatore:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Indirizzo:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-mail:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Archiviazione dati</h2>
-        <p>InExGenie archivia tutti i dati esclusivamente sul tuo dispositivo. Nessun dato personale viene archiviato su server esterni, trasmesso o condiviso con terze parti.</p>
+        <h2>2. Principi del trattamento dei dati</h2>
+        <p>La tutela della tua privacy è la nostra massima priorità. InExGenie è progettata come un'applicazione puramente locale. Ciò significa che tutti i dati finanziari, le note, le categorie e i media associati inseriti rimangono esclusivamente sul tuo dispositivo. Non avviene alcuna trasmissione dei tuoi dati finanziari a noi o a qualsiasi altro server esterno.</p>
     </div>
     <div class="card">
-        <h2>3. Autorizzazioni</h2>
+        <h2>3. Dati raccolti e scopo</h2>
+        <p>L'applicazione tratta le seguenti categorie di dati al solo scopo di fornire le funzioni dell'applicazione sul tuo dispositivo:</p>
         <ul>
-            <li><strong>Posizione:</strong> Usata per registrare il luogo delle transazioni. Solo quando l'opzione è abilitata.</li>
-            <li><strong>Fotocamera e Foto:</strong> Per aggiungere foto alle voci e immagini alle categorie.</li>
-            <li><strong>Face ID / Touch ID:</strong> Per bloccare l'app in modo sicuro (solo verifica biometrica, nessun dato viene archiviato).</li>
+            <li><strong>Dati di transazione:</strong> Entrate, uscite, importi, contratti, conti, budget e salvadanai per il controllo del budget personale.</li>
+            <li><strong>Dati di posizione (facoltativo):</strong> Coordinate geografiche per localizzare le transazioni, se abilitate.</li>
+            <li><strong>Immagini della fotocamera e foto (facoltativo):</strong> Ricevute o immagini personalizzate per l'associazione visiva nelle voci e nelle categorie.</li>
+            <li><strong>Dati biometrici (facoltativo):</strong> Face ID / Touch ID per il blocco dell'app (il trattamento viene eseguito in modalità crittografata esclusivamente dal sistema iOS; non vi abbiamo accesso).</li>
         </ul>
-        <p style="margin-top:10px;">Tutte le autorizzazioni possono essere revocate in qualsiasi momento nelle Impostazioni iOS in «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>4. Avviso legale</h2>
-        <p>InExGenie è uno strumento di gestione delle finanze personali. L'app non costituisce una consulenza finanziaria. Per decisioni finanziarie, si consiglia di consultare un consulente qualificato. Lo sviluppatore non si assume alcuna responsabilità per perdita di dati o calcoli errati.</p>
+        <h2>4. Base giuridica</h2>
+        <p>Il trattamento dei tuoi dati si basa sulle seguenti basi giuridiche ai sensi del GDPR:</p>
+        <ul>
+            <li><strong>Art. 6 (1) (b) GDPR:</strong> Necessario per l'esecuzione di un contratto (fornitura di tutte le funzioni dell'applicazione).</li>
+            <li><strong>Art. 6 (1) (a) GDPR:</strong> Il tuo esplicito consenso al trattamento dei dati di posizione e dei media facoltativi (fotocamera/foto) nonché all'uso delle funzioni biometriche di sistema.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Esportazione ed eliminazione dati</h2>
-        <p>Tutti i dati possono essere esportati o completamente eliminati tramite le impostazioni dell'app. La disinstallazione dell'app rimuove tutti i dati locali.</p>
+        <h2>5. Autorizzazioni dell'app</h2>
+        <p>Per fornire determinate funzioni, l'app richiede l'accesso alle interfacce di sistema:</p>
+        <ul>
+            <li><strong>Posizione (NSLocationWhenInUseUsageDescription):</strong> Consente l'associazione facoltativa di una posizione alle tue transazioni.</li>
+            <li><strong>Fotocamera e Foto (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Consente l'aggiunta di foto delle ricevute e la creazione di immagini di categoria personalizzate.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Consente il blocco locale facoltativo dell'applicazione per impedire accessi non autorizzati.</li>
+        </ul>
+        <p>Tutte le autorizzazioni possono essere attivate o disattivate in qualsiasi momento nelle impostazioni iOS alla voce «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>6. Modifiche</h2>
-        <p>La presente informativa sulla privacy può essere aggiornata quando necessario. Le modifiche significative verranno comunicate nell'applicazione.</p>
+        <h2>6. Apple come piattaforma</h2>
+        <p>L'app è distribuita tramite l'Apple App Store. Apple tratta i metadati dello Store, le informazioni sulle transazioni e sui download. Se hai abilitato i backup iCloud, i dati locali dell'app vengono salvati per impostazione predefinita nel tuo iCloud personale. Lo sviluppatore non ha accesso a queste trasmissioni e backup. Si applicano le politiche sulla privacy di Apple Inc. (One Apple Park Way, Cupertino, CA 95014, USA).</p>
     </div>
     <div class="card">
-        <h2>7. Ultimo aggiornamento</h2>
-        <p>Maggio 2026</p>
+        <h2>7. Periodo di conservazione</h2>
+        <p>I tuoi dati rimangono sul tuo dispositivo finché l'app è installata. Se disinstalli l'app, tutti i dati locali vengono eliminati irrimediabilmente dal tuo dispositivo. Se utilizzi il backup iCloud, i dati dell'applicazione vengono protetti al momento della creazione del backup e rimangono lì finché il backup non viene aggiornato o eliminato.</p>
+    </div>
+    <div class="card">
+        <h2>8. Misure di sicurezza</h2>
+        <p>Proteggiamo i tuoi dati utilizzando costantemente l'architettura di sicurezza di iOS:</p>
+        <ul>
+            <li><strong>Crittografia locale:</strong> Tutti i dati sono crittografati dalla protezione dei dati hardware di iOS.</li>
+            <li><strong>Sandboxing di rete:</strong> I tuoi dati finanziari non vengono mai trasmessi a Internet.</li>
+            <li><strong>Blocco dell'app:</strong> Puoi configurare un'ulteriore barriera abilitando il blocco biomertico (Face ID / Touch ID) nelle impostazioni dell'app.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. I tuoi diritti</h2>
+        <p>Poiché tutti i dati risiedono esclusivamente sul tuo dispositivo e noi non vi abbiamo accesso, puoi esercitare i tuoi diritti direttamente tu stesso:</p>
+        <ul>
+            <li><strong>Accesso e portabilità (Art. 15, 20 GDPR):</strong> Puoi esportare tutti i dati autonomamente tramite le impostazioni dell'app (esportazione JSON).</li>
+            <li><strong>Cancellazione e rettifica (Art. 16, 17 GDPR):</strong> Puoi modificare o eliminare le voci nell'app in qualsiasi momento o ripristinare completamente tutti i dati nelle impostazioni dell'app.</li>
+            <li><strong>Opposizione e revoca (Art. 21 GDPR):</strong> Puoi revocare le autorizzazioni per la posizione o le foto in qualsiasi momento tramite le impostazioni iOS.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Diritto di proporre reclamo</h2>
+        <p>Ai sensi dell'art. 77 GDPR, hai il diritto di proporre reclamo a un'autorità di controllo se ritieni che il trattamento dei tuoi dati personali violi il GDPR. Puoi trovare un elenco delle autorità di controllo sotto il rispettivo portale nazionale o presso il Comitato europeo per la protezione dei dati.</p>
+        <div class="alert-placeholder">Inserisci qui la tua autorità di controllo competente:</div>
+        <p><strong>Autorità competente:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Tutela dei minori</h2>
+        <p>L'uso dell'applicazione è classificato nell'App Store con un limite di età di 17+. Non raccogliamo o trattiamo consapevolmente dati di minori di 13 anni (conformità COPPA). Se scopri che un minore di 13 anni ha inserito dati nell'app, puoi rimuoverli completamente eliminando l'applicazione.</p>
+    </div>
+    <div class="card">
+        <h2>12. Avviso legale</h2>
+        <p>InExGenie è destinata esclusivamente alla documentazione personale e alla pianificazione del budget. Le funzioni, i calcoli e le statistiche forniti non costituiscono consulenza finanziaria, fiscale o legale. Qualsiasi decisione finanziaria presa è di tua esclusiva responsabilità. Lo sviluppatore non si assume alcuna responsabilità per inserimento dati errato, errori di calcolo o perdita di dati causati da crash di sistema o difetti hardware.</p>
+    </div>
+    <div class="card">
+        <h2>13. Modifiche e ultimo aggiornamento</h2>
+        <p>Questa informativa sulla privacy può essere modificata per adattarsi a requisiti legali mutevoli o a nuove funzionalità dell'app. La versione attuale è sempre disponibile tramite questo link e all'interno dell'app.</p>
+        <p><strong>Ultimo aggiornamento:</strong> Maggio 2026</p>
     </div>
 </div>
 
@@ -217,36 +440,87 @@
 <div class="lang-content" id="lang-es">
     <div class="card">
         <h2>1. Responsable</h2>
-        <p>El desarrollador es responsable de esta aplicación en virtud del RGPD. Contacto: [TU EMAIL AQUÍ]</p>
+        <div class="alert-placeholder">Por favor introduce tus datos de contacto aquí:</div>
+        <p><strong>Desarrollador:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Dirección:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>Correo electrónico:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Almacenamiento de datos</h2>
-        <p>InExGenie almacena todos los datos exclusivamente en tu dispositivo. No se almacena ningún dato personal en servidores externos, ni se transmite ni comparte con terceros.</p>
+        <h2>2. Principios del tratamiento de datos</h2>
+        <p>La protección de su privacidad es nuestra máxima prioridad. InExGenie está diseñada como una aplicación puramente local. Esto significa que todos los datos financieros, notas, categorías y medios asociados que introduzca permanecen exclusivamente en su propio dispositivo. No se realiza ninguna transmisión de sus datos financieros a nosotros ni a ningún otro servidor externo.</p>
     </div>
     <div class="card">
-        <h2>3. Permisos</h2>
+        <h2>3. Datos recopilados y finalidad</h2>
+        <p>La aplicación trata las siguientes categorías de datos únicamente para proporcionar las funciones de la aplicación en su dispositivo:</p>
         <ul>
-            <li><strong>Ubicación:</strong> Se utiliza para registrar el lugar de las transacciones. Solo cuando la opción está activada.</li>
-            <li><strong>Cámara y Fotos:</strong> Para añadir fotos a las entradas e imágenes a las categorías.</li>
-            <li><strong>Face ID / Touch ID:</strong> Para bloquear la aplicación de forma segura (solo verificación biométrica, no se almacenan datos).</li>
+            <li><strong>Datos de transacciones:</strong> Ingresos, gastos, importes, contratos, cuentas, presupuestos y huchas de ahorro para el control del presupuesto personal.</li>
+            <li><strong>Datos de ubicación (opcional):</strong> Coordenadas geográficas para ubicar las transacciones, si está activado.</li>
+            <li><strong>Imágenes de cámara y fotos (opcional):</strong> Recibos o imágenes personalizadas para la asociación visual en entradas y categorías.</li>
+            <li><strong>Datos biométricos (opcional):</strong> Face ID / Touch ID para el bloqueo de la aplicación (el tratamiento se realiza cifrado exclusivamente por el sistema iOS; no tenemos acceso a él).</li>
         </ul>
-        <p style="margin-top:10px;">Todos los permisos pueden revocarse en cualquier momento en los Ajustes de iOS en «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>4. Aviso legal</h2>
-        <p>InExGenie es una herramienta de gestión de finanzas personales. La aplicación no constituye asesoramiento financiero. Para decisiones financieras, se recomienda consultar a un asesor cualificado. El desarrollador no asume ninguna responsabilidad por pérdida de datos o cálculos incorrectos.</p>
+        <h2>4. Base legal</h2>
+        <p>El tratamiento de sus datos se basa en los siguientes fundamentos jurídicos en el sentido del RGPD:</p>
+        <ul>
+            <li><strong>Art. 6 (1) (b) RGPD:</strong> Necesario para la ejecución de un contrato (prestación de todas las funciones de la aplicación).</li>
+            <li><strong>Art. 6 (1) (a) RGPD:</strong> Su consentimiento explícito para el tratamiento de datos de ubicación y medios opcionales (cámara/fotos), así como para el uso de funciones biométricas del sistema.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Exportación y eliminación de datos</h2>
-        <p>Todos los datos pueden exportarse o eliminarse completamente a través de los ajustes de la aplicación. La desinstalación de la aplicación elimina todos los datos locales.</p>
+        <h2>5. Permisos de la aplicación</h2>
+        <p>Para proporcionar ciertas funciones, la aplicación requiere acceso a interfaces del sistema:</p>
+        <ul>
+            <li><strong>Ubicación (NSLocationWhenInUseUsageDescription):</strong> Permite la asignación opcional de una ubicación a sus transacciones.</li>
+            <li><strong>Cámara y Fotos (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Permite añadir fotos de recibos y crear imágenes de categoría personalizadas.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Permite el bloqueo local opcional de la aplicación para evitar accesos no autorizados.</li>
+        </ul>
+        <p>Todos los permisos pueden activarse o desactivarse en cualquier momento en los ajustes de iOS bajo el elemento de menú «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>6. Cambios</h2>
-        <p>Esta política de privacidad puede actualizarse cuando sea necesario. Los cambios significativos se comunicarán en la aplicación.</p>
+        <h2>6. Apple como plataforma</h2>
+        <p>La aplicación se distribuye a través de la Apple App Store. Apple trata metadatos de la Store, información sobre transacciones y descargas. Si ha activado las copias de seguridad de iCloud, los datos locales de la aplicación se guardan por defecto en su iCloud personal. El desarrollador no tiene acceso a estas transmisiones ni copias de seguridad. Se aplican las políticas de privacidad de Apple Inc. (One Apple Park Way, Cupertino, CA 95014, EE. UU.).</p>
     </div>
     <div class="card">
-        <h2>7. Última actualización</h2>
-        <p>Mayo 2026</p>
+        <h2>7. Plazo de conservación</h2>
+        <p>Sus datos permanecen en su dispositivo mientras la aplicación esté instalada. Si desinstala la aplicación, todos los datos locales se eliminan de forma irrecuperable de su dispositivo. Si utiliza la copia de seguridad de iCloud, los datos de la aplicación se aseguran al crear la copia de seguridad y permanecen allí hasta que la copia de seguridad se actualice o se elimine.</p>
+    </div>
+    <div class="card">
+        <h2>8. Medidas de seguridad</h2>
+        <p>Protegemos sus datos utilizando constantemente la arquitectura de seguridad de iOS:</p>
+        <ul>
+            <li><strong>Cifrado local:</strong> Todos los datos están cifrados mediante la protección de datos por hardware de iOS.</li>
+            <li><strong>Aislamiento de red (Sandboxing):</strong> Sus datos financieros nunca se transmiten a Internet.</li>
+            <li><strong>Bloqueo de la aplicación:</strong> Puede configurar una barrera adicional activando el bloqueo biométrico (Face ID / Touch ID) en los ajustes de la aplicación.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Sus derechos</h2>
+        <p>Dado que todos los datos residen exclusivamente en su dispositivo y no tenemos acceso a ellos, puede ejercer sus derechos directamente usted mismo:</p>
+        <ul>
+            <li><strong>Acceso y portabilidad (Art. 15, 20 RGPD):</strong> Puede exportar todos los datos usted mismo a través de los ajustes de la aplicación (exportación JSON).</li>
+            <li><strong>Supresión y rectificación (Art. 16, 17 RGPD):</strong> Puede editar o eliminar entradas en la aplicación en cualquier momento, o restablecer por completo todos los datos en los ajustes de la aplicación.</li>
+            <li><strong>Oposición y revocación (Art. 21 RGPD):</strong> Puede revocar los permisos de ubicación o fotos en cualquier momento a través de los ajustes de iOS.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Derecho a presentar una reclamación</h2>
+        <p>De conformidad con el art. 77 del RGPD, tiene derecho a presentar una reclamación ante una autoridad de control si considera que el tratamiento de sus datos personales infringe el RGPD. Puede encontrar una lista de las autoridades de control en el portal nacional correspondiente o en el Comité Europeo de Protección de Datos.</p>
+        <div class="alert-placeholder">Por favor introduce tu autoridad de control competente aquí:</div>
+        <p><strong>Autoridad competente:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Protección de menores</h2>
+        <p>El uso de la aplicación está clasificado en la App Store con un límite de edad de 17+. No recopilamos ni tratamos a sabiendas datos de menores de 13 años (conformidad con COPPA). Si descubre que un menor de 13 años ha introducido datos en la aplicación, puede eliminarlos por completo desinstalando la aplicación.</p>
+    </div>
+    <div class="card">
+        <h2>12. Aviso legal</h2>
+        <p>InExGenie está destinada únicamente a la documentación personal y la planificación presupuestaria. Las funciones, cálculos y estadísticas proporcionados no constituyen asesoramiento financiero, fiscal o legal. Cualquier decisión financiera que tome es de su exclusiva responsabilidad. El desarrollador no asume ninguna responsabilidad por la entrada de datos incorrecta, errores de cálculo o pérdida de datos causados por caídas del sistema o defectos de hardware.</p>
+    </div>
+    <div class="card">
+        <h2>13. Cambios y última actualización</h2>
+        <p>Esta política de privacidad puede modificarse para adaptarse a los cambiantes requisitos legales o nuevas funciones de la aplicación. La versión actual siempre está disponible a través de este enlace y dentro de la aplicación.</p>
+        <p><strong>Última actualización:</strong> Mayo de 2026</p>
     </div>
 </div>
 
@@ -254,36 +528,87 @@
 <div class="lang-content" id="lang-nl">
     <div class="card">
         <h2>1. Verantwoordelijke</h2>
-        <p>De ontwikkelaar is verantwoordelijk voor deze app in de zin van de AVG. Contact: [UW E-MAIL HIER]</p>
+        <div class="alert-placeholder">Vul hier uw contactgegevens in:</div>
+        <p><strong>Ontwikkelaar:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Adres:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-mail:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Gegevensopslag</h2>
-        <p>InExGenie slaat alle gegevens uitsluitend lokaal op uw apparaat op. Er worden geen persoonlijke gegevens opgeslagen op externe servers, verzonden of gedeeld met derden.</p>
+        <h2>2. Beginselen van gegevensverwerking</h2>
+        <p>Het beschermen van uw privacy is onze hoogste prioriteit. InExGenie is ontworpen als een puur lokale applicatie. Dit betekent: alle financiële gegevens, notities, categorieën en gekoppelde media die u invoert, blijven uitsluitend lokaal op uw eigen apparaat. Er vindt geen overdracht van uw financiële gegevens naar ons of naar andere externe servers plaats.</p>
     </div>
     <div class="card">
-        <h2>3. Machtigingen</h2>
+        <h2>3. Verzamelde gegevens &amp; doel</h2>
+        <p>De app verwerkt de volgende categorieën gegevens uitsluitend om de app-functies op uw apparaat te bieden:</p>
         <ul>
-            <li><strong>Locatie:</strong> Gebruikt om de locatie van transacties vast te leggen. Alleen wanneer de optie is ingeschakeld.</li>
-            <li><strong>Camera &amp; Foto's:</strong> Voor het toevoegen van foto's aan invoer en categorieafbeeldingen.</li>
-            <li><strong>Face ID / Touch ID:</strong> Voor het veilig vergrendelen van de app (alleen biometrische verificatie, er worden geen gegevens opgeslagen).</li>
+            <li><strong>Transactiegegevens:</strong> Inkomsten, uitgaven, bedragen, contracten, rekeningen, budgetten en spaarpotten voor persoonlijke budgetcontrole.</li>
+            <li><strong>Locatiegegevens (optioneel):</strong> Geografische coördinaten om transacties te lokaliseren, indien ingeschakeld.</li>
+            <li><strong>Camerabeelden &amp; foto's (optioneel):</strong> Ontvangstbewijzen of aangepaste afbeeldingen voor visuele associatie in invoer en categorieën.</li>
+            <li><strong>Biometrische gegevens (optioneel):</strong> Face ID / Touch ID voor app-vergrendeling (verwerking wordt uitsluitend versleuteld uitgevoerd door het iOS-systeem; wij hebben hier geen toegang toe).</p>
         </ul>
-        <p style="margin-top:10px;">Alle machtigingen kunnen op elk moment worden ingetrokken in iOS-instellingen onder «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>4. Disclaimer</h2>
-        <p>InExGenie is een hulpmiddel voor persoonlijk financieel beheer. De app vormt geen financieel advies. Voor financiële beslissingen wordt aanbevolen een gekwalificeerde adviseur te raadplegen. De ontwikkelaar aanvaardt geen aansprakelijkheid voor gegevensverlies of onjuiste berekeningen.</p>
+        <h2>4. Rechtsgrondslag</h2>
+        <p>De verwerking van uw gegevens is gebaseerd op de volgende wettelijke grondslagen in de zin van de AVG:</p>
+        <ul>
+            <li><strong>Art. 6 lid 1 sub b AVG:</strong> Noodzakelijk voor de uitvoering van een overeenkomst (levering van alle functies van de app).</li>
+            <li><strong>Art. 6 lid 1 sub a AVG:</strong> Uw uitdrukkelijke toestemming voor de verwerking van optionele locatiegegevens en media (camera/foto's) evenals het gebruik van biometrische systeemfuncties.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Gegevensexport &amp; verwijdering</h2>
-        <p>Alle gegevens kunnen worden geëxporteerd of volledig verwijderd via de app-instellingen. Bij het verwijderen van de app worden alle lokale gegevens gewist.</p>
+        <h2>5. App-machtigingen</h2>
+        <p>Om bepaalde functies te kunnen bieden, heeft de app toegang nodig tot systeeminterfaces:</p>
+        <ul>
+            <li><strong>Locatie (NSLocationWhenInUseUsageDescription):</strong> Maakt optionele locatietoewijzing voor uw transacties mogelijk.</li>
+            <li><strong>Camera &amp; Foto's (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Maakt het toevoegen van foto's van ontvangstbewijzen en het maken van aangepaste categorieafbeeldingen mogelijk.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Maakt optionele lokale vergrendeling van de app mogelijk om ongeautoriseerde toegang te voorkomen.</li>
+        </ul>
+        <p>Alle machtigingen kunnen op elk moment worden geactiveerd of gedeactiveerd in de iOS-instellingen onder het menu-item «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>6. Wijzigingen</h2>
-        <p>Dit privacybeleid kan indien nodig worden bijgewerkt. Belangrijke wijzigingen worden in de app gecommuniceerd.</p>
+        <h2>6. Apple als platform</h2>
+        <p>De app wordt gedistribueerd via de Apple App Store. Apple verwerkt hierbij store-metadata, transactie- en downloadinformatie. Als u iCloud-backups hebt ingeschakeld, worden uw lokale app-gegevens standaard opgeslagen in uw persoonlijke iCloud. De ontwikkelaar heeft geen toegang tot deze overdrachten en backups. Het privacybeleid van Apple Inc. (One Apple Park Way, Cupertino, CA 95014, VS) is van toepassing.</p>
     </div>
     <div class="card">
-        <h2>7. Laatste update</h2>
-        <p>Mei 2026</p>
+        <h2>7. Bewaartermijn</h2>
+        <p>Uw gegevens blijven op uw apparaat staan zolang de app is geïnstalleerd. Als u de app verwijdert, worden alle lokale gegevens onherroepelijk van uw apparaat gewist. Als u een iCloud-backup gebruikt, worden de app-gegevens beveiligd wanneer de backup wordt gemaakt en blijven daar totdat de backup wordt bijgewerkt of verwijderd.</p>
+    </div>
+    <div class="card">
+        <h2>8. Beveiligingsmaatregelen</h2>
+        <p>Wij beschermen uw gegevens door consequent gebruik te maken van de iOS-beveiligingsarchitectuur:</p>
+        <ul>
+            <li><strong>Lokale versleuteling:</strong> Alle gegevens zijn versleuteld met hardwaregebaseerde iOS Data Protection.</li>
+            <li><strong>Netwerk-sandboxing:</strong> Uw financiële gegevens worden nooit naar het internet verzonden.</li>
+            <li><strong>App-vergrendeling:</strong> U kunt een extra barrière instellen door biometrische vergrendeling (Face ID / Touch ID) in te schakelen in de app-instellingen.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Uw rechten</h2>
+        <p>Aangezien alle gegevens uitsluitend op uw apparaat staan en wij geen toegang hebben, kunt u uw rechten rechtstreeks zelf uitoefenen:</p>
+        <ul>
+            <li><strong>Inzage &amp; overdraagbaarheid (Art. 15, 20 AVG):</strong> U kunt alle gegevens zelf exporteren via de app-instellingen (JSON-export).</li>
+            <li><strong>Wissen &amp; rectificatie (Art. 16, 17 AVG):</strong> U kunt vermeldingen in de app op elk moment bewerken of verwijderen, of alle gegevens volledig wissen in de app-instellingen.</li>
+            <li><strong>Bezwaar &amp; intrekking (Art. 21 AVG):</strong> U kunt de machtigingen voor locatie of foto's op elk moment intrekken via de iOS-instellingen.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Recht om een klacht in te dienen</h2>
+        <p>In overeenstemming met art. 77 AVG hebt u het recht om een klacht in te dienen bij een toezichthoudende autoriteit als u van mening bent dat de verwerking van uw persoonsgegevens in strijd is met de AVG. U kunt een lijst met toezichthoudende autoriteiten vinden onder het respectieve nationale portaal of het Europees Comité voor gegevensbescherming.</p>
+        <div class="alert-placeholder">Vul hier uw bevoegde toezichthoudende autoriteit in:</div>
+        <p><strong>Bevoegde autoriteit:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Bescherming van minderjarigen</h2>
+        <p>Het gebruik van de app is in de App Store geclassificeerd met een leeftijdsclassificatie van 17+. We verzamelen of verwerken niet bewust gegevens van kinderen onder de 13 jaar (COPPA-conformiteit). Als u ontdekt dat een kind onder de 13 jaar gegevens heeft ingevoerd in de app, kunt u deze volledig verwijderen door de app te wissen.</p>
+    </div>
+    <div class="card">
+        <h2>12. Disclaimer</h2>
+        <p>InExGenie is uitsluitend bedoeld voor persoonlijke documentatie en budgetplanning. De aangeboden functies, berekeningen en statistieken vormen geen financieel, fiskelijk of juridisch advies. Financiële beslissingen die u neemt vallen onder uw eigen verantwoordelijkheid. De ontwikkelaar aanvaardt geen aansprakelijkheid voor onjuiste gegevensinvoer, berekeningsfouten of gegevensverlies veroorzaakt door systeemcrashes of hardwaredefecten.</p>
+    </div>
+    <div class="card">
+        <h2>13. Wijzigingen &amp; laatste update</h2>
+        <p>Dit privacybeleid kan worden aangepast om te voldoen aan veranderende wettelijke vereisten of nieuwe app-functies. De huidige versie is altijd beschikbaar via deze link en in de app.</p>
+        <p><strong>Laatste update:</strong> Mei 2026</p>
     </div>
 </div>
 
@@ -291,36 +616,87 @@
 <div class="lang-content" id="lang-da">
     <div class="card">
         <h2>1. Dataansvarlig</h2>
-        <p>Udvikleren er ansvarlig for denne app i henhold til GDPR. Kontakt: [DIN E-MAIL HER]</p>
+        <div class="alert-placeholder">Indtast venligst dine kontaktoplysninger her:</div>
+        <p><strong>Udvikler:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Adresse:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-mail:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Datalagring</h2>
-        <p>InExGenie gemmer alle data udelukkende lokalt på din enhed. Ingen personlige data gemmes på eksterne servere, overføres eller deles med tredjeparter.</p>
+        <h2>2. Principper for databehandling</h2>
+        <p>Beskyttelse af dit privatliv er vores højeste prioritet. InExGenie er designet som en ren lokal applikation. Det betyder: Alle finansielle data, noter, kategorier og tilknyttede medier, du indtaster, forbliver udelukkende lokalt på din egen enhed. Der sker ingen overførsel af dine finansielle data til os eller til andre eksterne servere.</p>
     </div>
     <div class="card">
-        <h2>3. Tilladelser</h2>
+        <h2>3. Indsamlede data og formål</h2>
+        <p>Appen behandler følgende kategorier af data udelukkende for at levere app-funktionerne på din enhed:</p>
         <ul>
-            <li><strong>Placering:</strong> Bruges til at registrere transaktionsstedet. Kun når indstillingen er aktiveret.</li>
-            <li><strong>Kamera &amp; Fotos:</strong> Til at tilføje fotos til poster og kategoriebilleder.</li>
-            <li><strong>Face ID / Touch ID:</strong> Til sikker låsning af appen (kun biometrisk verifikation, ingen data gemmes).</li>
+            <li><strong>Transaktionsdata:</strong> Indtægter, udgifter, beløb, kontrakter, konti, budgetter og sparebøsser til personlig budgetkontrol.</li>
+            <li><strong>Placeringsdata (valgfrit):</strong> Geografiske koordinater til at lokalisere transaktioner, hvis aktiveret.</li>
+            <li><strong>Kamerabilleder og fotos (valgfrit):</strong> Kvitteringer eller brugerdefinerede billeder til visuel tilknytning i poster og kategorier.</li>
+            <li><strong>Biometriske data (valgfrit):</strong> Face ID / Touch ID til app-lås (behandlingen udføres udelukkende krypteret af iOS-systemet; vi har ingen adgang til det).</li>
         </ul>
-        <p style="margin-top:10px;">Alle tilladelser kan til enhver tid tilbagekaldes i iOS-indstillinger under «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>4. Ansvarsfraskrivelse</h2>
-        <p>InExGenie er et værktøj til personlig økonomistyring. Appen udgør ikke finansiel rådgivning. For finansielle beslutninger anbefales det at konsultere en kvalificeret rådgiver. Udvikleren påtager sig intet ansvar for datatab eller forkerte beregninger.</p>
+        <h2>4. Retsgrundlag</h2>
+        <p>Behandlingen af dine data er baseret på følgende retsgrundlag i henhold til GDPR:</p>
+        <ul>
+            <li><strong>Art. 6, stk. 1, litra b GDPR:</strong> Nødvendig for opfyldelse af en kontrakt (levering af alle funktioner i appen).</li>
+            <li><strong>Art. 6, stk. 1, litra a GDPR:</strong> Dit udtrykkelige samtykke til behandling af valgfrie placeringsdata og medier (kamera/fotos) samt brug af biometriske systemfunktioner.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Dataeksport &amp; sletning</h2>
-        <p>Alle data kan eksporteres eller slettes fuldstændigt via app-indstillingerne. Afinstallation af appen fjerner alle lokale data.</p>
+        <h2>5. App-tilladelser</h2>
+        <p>For at levere visse funktioner kræver appen adgang til systemgrænseflader:</p>
+        <ul>
+            <li><strong>Placering (NSLocationWhenInUseUsageDescription):</strong> Giver mulighed for valgfri placeringskortlægning for dine transaktioner.</li>
+            <li><strong>Kamera &amp; Fotos (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Giver mulighed for at tilføje fotos af kvitteringer og oprette tilpassede kategoriebilleder.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Giver mulighed for valgfri lokal låsning af appen for at forhindre uautoriseret adgang.</li>
+        </ul>
+        <p>Alle tilladelser kan til enhver tid aktiveres eller deaktiveres i iOS-indstillingerne under menupunktet «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>6. Ændringer</h2>
-        <p>Denne privatlivspolitik kan opdateres efter behov. Væsentlige ændringer vil blive kommunikeret i appen.</p>
+        <h2>6. Apple som platform</h2>
+        <p>Appen distribueres via Apple App Store. Apple behandler butiksmetadata, transaktions- og downloadoplysninger. Hvis du har aktiveret iCloud-backups, sikkerhedskopieres dine lokale app-data som standard til din personlige iCloud. Udvikleren har ikke adgang til disse overførsler og sikkerhedskopier. Privatlivspolitikkerne for Apple Inc. (One Apple Park Way, Cupertino, CA 95014, USA) gælder.</p>
     </div>
     <div class="card">
-        <h2>7. Sidst opdateret</h2>
-        <p>Maj 2026</p>
+        <h2>7. Opbevaringstid</h2>
+        <p>Dine data forbliver på din enhed, så længe appen er installeret. Hvis du afinstallerer appen, slettes alle lokale data uigenkaldeligt fra din enhed. Hvis du bruger iCloud-backup, sikres app-dataene, når sikkerhedskopien oprettes, og forbliver der, indtil sikkerhedskopien opdateres eller slettes.</p>
+    </div>
+    <div class="card">
+        <h2>8. Sikkerhedsforanstaltninger</h2>
+        <p>Vi beskytter dine data ved konsekvent at bruge iOS-sikkerhedsarkitekturen:</p>
+        <ul>
+            <li><strong>Lokal kryptering:</strong> Alle data er krypteret af hardwarebaseret iOS Data Protection.</li>
+            <li><strong>Netværkssandboxing:</strong> Dine finansielle data overføres aldrig til internettet.</li>
+            <li><strong>App-lås:</strong> Du kan oprette en yderligere barriere ved at aktivere biometrisk lås (Face ID / Touch ID) i app-indstillingerne.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Dine rettigheder</h2>
+        <p>Da alle data udelukkende ligger på din enhed, og vi ikke har adgang til dem, kan du udøve dine rettigheder direkte selv:</p>
+        <ul>
+            <li><strong>Indsigt &amp; dataportabilitet (Art. 15, 20 GDPR):</strong> Du kan selv eksportere alle data via app-indstillingerne (JSON-eksport).</li>
+            <li><strong>Sletning &amp; berigtigelse (Art. 16, 17 GDPR):</strong> Du kan til enhver tid redigere eller slette poster i appen eller nulstille alle data helt i app-indstillingerne.</li>
+            <li><strong>Indsigelse &amp; tilbagekaldelse (Art. 21 GDPR):</strong> Du kan til enhver tid tilbagekalde tilladelser til placering eller fotos via iOS-indstillingerne.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Klageret</h2>
+        <p>I henhold til art. 77 GDPR har du ret til at indgive en klage til en tilsynsmyndighed, hvis du mener, at behandlingen af dine personoplysninger overtræder GDPR. Du kan finde en liste over tilsynsmyndigheder under den respektive nationale portal eller Det Europæiske Databeskyttelsesråd.</p>
+        <div class="alert-placeholder">Indtast venligst din kompetente tilsynsmyndighed her:</div>
+        <p><strong>Kompetent myndighed:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Beskyttelse af mindreårige</h2>
+        <p>Brugen af appen er angivet i App Store med en aldersklassificering på 17+. Vi indsamler eller behandler ikke bevidst data fra børn under 13 år (COPPA-overholdelse). Hvis du opdager, at et barn under 13 år har indtastet data i appen, kan du fjerne dem helt ved at slette appen.</p>
+    </div>
+    <div class="card">
+        <h2>12. Ansvarsfraskrivelse</h2>
+        <p>InExGenie er udelukkende beregnet til personlig dokumentation og budgetplanlægning. De leverede funktioner, beregninger og statistikker udgør ikke finansiel, skattemæssig eller juridisk rådgivning. Eventuelle finansielle beslutninger, du træffer, er dit eget ansvar. Udvikleren påtager sig intet ansvar for forkert dataindtastning, beregningsfejl eller datatab forårsaget af systemnedbrud eller hardwaredefekter.</p>
+    </div>
+    <div class="card">
+        <h2>13. Ændringer og senest opdateret</h2>
+        <p>Denne privatlivspolitik kan justeres for at tilpasse sig ændrede lovkrav eller nye app-funktioner. Den aktuelle version er altid tilgængelig via dette link og i appen.</p>
+        <p><strong>Senest opdateret:</strong> Maj 2026</p>
     </div>
 </div>
 
@@ -328,36 +704,87 @@
 <div class="lang-content" id="lang-hu">
     <div class="card">
         <h2>1. Adatkezelő</h2>
-        <p>A fejlesztő felelős ezért az alkalmazásért a GDPR értelmében. Kapcsolat: [AZ ÖN E-MAIL CÍME ITT]</p>
+        <div class="alert-placeholder">Kérjük, adja meg elérhetőségeit itt:</div>
+        <p><strong>Fejlesztő:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Cím:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-mail:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Adattárolás</h2>
-        <p>Az InExGenie minden adatot kizárólag az eszközén tárol. Nem kerül személyes adat külső szerverekre, nem kerül továbbításra, és nem osztják meg harmadik felekkel.</p>
+        <h2>2. Adatkezelési elvek</h2>
+        <p>Az Ön adatainak védelme a legfontosabb prioritásunk. Az InExGenie alkalmazást tisztán helyi használatra terveztük. Ez azt jelenti: Minden Ön által megadott pénzügyi adat, feljegyzés, kategória és kapcsolt média kizárólag az Ön saját eszközén marad. Nem történik pénzügyi adatok továbbítása a fejlesztőnek vagy bármilyen más külső szerverre.</p>
     </div>
     <div class="card">
-        <h2>3. Engedélyek</h2>
+        <h2>3. Gyűjtött adatok és cél</h2>
+        <p>Az alkalmazás az alábbi adatkategóriákat kizárólag az alkalmazás funkcióinak biztosítása érdekében kezeli az Ön eszközén:</p>
         <ul>
-            <li><strong>Helyszín:</strong> A tranzakciók helyének rögzítésére használják. Csak akkor, ha az opció engedélyezve van.</li>
-            <li><strong>Kamera &amp; Fotók:</strong> Fényképek hozzáadásához a bejegyzésekhez és kategóriaképekhez.</li>
-            <li><strong>Face ID / Touch ID:</strong> Az alkalmazás biztonságos zárolásához (csak biometrikus ellenőrzés, nem tárolódnak adatok).</li>
+            <li><strong>Tranzakciós adatok:</strong> Bevételek, kiadások, összegek, szerződések, számlák, költségvetések és megtakarítási kasszák személyes költségvetés-ellenőrzéshez.</li>
+            <li><strong>Helyszínadatok (opcionális):</strong> Földrajzi koordináták a tranzakciók helyének rögzítéséhez, ha ez engedélyezve van.</li>
+            <li><strong>Kameraképek és fotók (opcionális):</strong> Bizonylatok vagy egyéni képek vizuális hozzárendeléshez a bejegyzésekben és kategóriákban.</li>
+            <li><strong>Biometrikus adatok (opcionális):</strong> Face ID / Touch ID az alkalmazás zárolásához (a feldolgozást kizárólag titkosítva végzi az iOS rendszer; ehhez nincs hozzáférésünk).</li>
         </ul>
-        <p style="margin-top:10px;">Minden engedély bármikor visszavonható az iOS beállításokban az «InExGenie» alatt.</p>
     </div>
     <div class="card">
-        <h2>4. Jogi nyilatkozat</h2>
-        <p>Az InExGenie személyes pénzügyi menedzsment eszköz. Az alkalmazás nem minősül pénzügyi tanácsadásnak. Pénzügyi döntésekhez ajánlott képzett tanácsadót felkeresni. A fejlesztő nem vállal felelősséget adatvesztésért vagy hibás számításokért.</p>
+        <h2>4. Jogalap</h2>
+        <p>Az Ön adatainak kezelése a következő jogalapokon nyugszik a GDPR értelmében:</p>
+        <ul>
+            <li><strong>GDPR 6. cikk (1) bekezdés b) pont:</strong> Szerződés teljesítéséhez szükséges (az alkalmazás összes funkciójának biztosítása).</li>
+            <li><strong>GDPR 6. cikk (1) bekezdés a) pont:</strong> Az Ön kifejezett hozzájárulása az opcionális helyszínadatok és média (kamera/fotók) kezeléséhez, valamint a biometrikus rendszerfunkciók használatához.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Adatexport &amp; törlés</h2>
-        <p>Minden adat exportálható vagy teljesen törölhető az alkalmazás beállításain keresztül. Az alkalmazás eltávolítása minden helyi adatot töröl.</p>
+        <h2>5. Alkalmazás-engedélyek</h2>
+        <p>Bizonyos funkciók biztosításához az alkalmazásnak hozzá kell férnie a rendszerinterfészekhez:</p>
+        <ul>
+            <li><strong>Helyszín (NSLocationWhenInUseUsageDescription):</strong> Lehetővé teszi a tranzakciók opcionális helyszínhozzárendelését.</li>
+            <li><strong>Kamera és fotók (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Lehetővé teszi bizonylatfotók hozzáadását és egyedi kategóriaképek létrehozását.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Lehetővé teszi az alkalmazás opcionális helyi zárolását a jogosulatlan hozzáférés megakadályozása érdekében.</li>
+        </ul>
+        <p>Minden engedély bármikor aktiválható vagy deaktiválható az iOS beállításaiban az «InExGenie» menüpont alatt.</p>
     </div>
     <div class="card">
-        <h2>6. Változások</h2>
-        <p>Ez az adatvédelmi irányelvek szükség esetén frissíthetők. A jelentős változásokat az alkalmazáson belül közöljük.</p>
+        <h2>6. Apple mint platform</h2>
+        <p>Az alkalmazás terjesztése az Apple App Store-on keresztül történik. Az Apple áruházi metaadatokat, tranzakciós és letöltési információkat kezel. Ha engedélyezte az iCloud biztonsági mentéseket, az alkalmazás helyi adatai alapértelmezés szerint mentésre kerülnek a személyes iCloud tárhelyére. A fejlesztőnek nincs hozzáférése ezekhez a továbbításokhoz és mentésekhez. Az Apple Inc. (One Apple Park Way, Cupertino, CA 95014, USA) adatvédelmi irányelvei érvényesek.</p>
     </div>
     <div class="card">
-        <h2>7. Utolsó frissítés</h2>
-        <p>2026. május</p>
+        <h2>7. Tárolási időtartam</h2>
+        <p>Az Ön adatai mindaddig az eszközén maradnak, amíg az alkalmazás telepítve van. Az alkalmazás törlése esetén minden helyi adat visszaállíthatatlanul törlődik az eszközről. Ha iCloud biztonsági mentést használ, az alkalmazás adatai a mentés létrehozásakor biztosításra kerülnek, és ott maradnak, amíg a mentést nem frissítik vagy törlik.</p>
+    </div>
+    <div class="card">
+        <h2>8. Biztonsági intézkedések</h2>
+        <p>Az Ön adatait az iOS biztonsági architektúrájának következetes használatával védjük:</p>
+        <ul>
+            <li><strong>Helyi titkosítás:</strong> Minden adatot a hardveralapú iOS Data Protection titkosít.</li>
+            <li><strong>Hálózati sandboxing:</strong> Pénzügyi adatai soha nem kerülnek továbbításra az internetre.</li>
+            <li><strong>Alkalmazás-zár:</strong> További akadályt állíthat fel a biometrikus zár (Face ID / Touch ID) aktiválásával az alkalmazás beállításaiban.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Az Ön jogai</h2>
+        <p>Mivel minden adat kizárólag az Ön eszközén található, és nincs hozzáférésünk azokhoz, jogait közvetlenül saját maga gyakorolhatja:</p>
+        <ul>
+            <li><strong>Hozzáférés és hordozhatóság (GDPR 15., 20. cikk):</strong> Minden adatot önállóan exportálhat az alkalmazás beállításain keresztül (JSON export).</li>
+            <li><strong>Törlés és helyesbítés (GDPR 16., 17. cikk):</strong> A bejegyzéseket bármikor szerkesztheti vagy törölheti az alkalmazásban, vagy teljesen visszaállíthatja az összes adatot az alkalmazás beállításaiban.</li>
+            <li><strong>Tiltakozás és visszavonás (GDPR 21. cikk):</strong> A helyszínre vagy fotókra vonatkozó engedélyeket bármikor visszavonhatja az iOS beállításain keresztül.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Panasztételi jog</h2>
+        <p>A GDPR 77. cikke értelmében joga van panaszt tenni egy felügyeleti hatóságnál, ha úgy véli, hogy a személyes adatainak kezelése sérti a GDPR-t. A felügyeleti hatóságok listája megtalálható a mindenkori nemzeti portálon vagy az Európai Adatvédelmi Testületnél.</p>
+        <div class="alert-placeholder">Kérjük, adja meg az illetékes felügyeleti hatóságot itt:</div>
+        <p><strong>Illetékes hatóság:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Gyermekvédelem</h2>
+        <p>Az alkalmazás használata az App Store-ban 17 év feletti korhatár-besorolással van megjelölve. Tudatosan nem gyűjtünk és nem kezelünk adatokat 13 év alatti gyermekektől (COPPA-megfelelőség). Ha felfedezi, hogy egy 13 év alatti gyermek adatokat adott meg az alkalmazásban, az alkalmazás törlésével maradvány nélkül eltávolíthatja azokat.</p>
+    </div>
+    <div class="card">
+        <h2>12. Jogi nyilatkozat</h2>
+        <p>Az InExGenie kizárólag a személyes dokumentációt és a költségvetés tervezését szolgálja. A biztosított funkciók, számítások és statisztikák nem minősülnek pénzügyi, adó- vagy jogi tanácsadásnak. Bármilyen pénzügyi döntést saját felelősségére hoz meg. A fejlesztő nem vállal felelősséget a hibás adatbevitelért, a számítási hibákért vagy a rendszerösszeomlások vagy hardverhibák okozta adatvesztésért.</p>
+    </div>
+    <div class="card">
+        <h2>13. Változások és utolsó frissítés</h2>
+        <p>Ez az adatvédelmi nyilatkozat módosítható a változó jogi követelményekhez vagy az új alkalmazásfunkciókhoz való igazodás érdekében. Az aktuális verzió mindig elérhető ezen a linken keresztül, valamint az alkalmazásban.</p>
+        <p><strong>Utolsó frissítés:</strong> 2026. május</p>
     </div>
 </div>
 
@@ -365,36 +792,87 @@
 <div class="lang-content" id="lang-pl">
     <div class="card">
         <h2>1. Administrator</h2>
-        <p>Deweloper jest odpowiedzialny za tę aplikację w rozumieniu RODO. Kontakt: [TWÓJ EMAIL TUTAJ]</p>
+        <div class="alert-placeholder">Wprowadź swoje dane kontaktowe tutaj:</div>
+        <p><strong>Deweloper:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Adres:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-mail:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Przechowywanie danych</h2>
-        <p>InExGenie przechowuje wszystkie dane wyłącznie na Twoim urządzeniu. Żadne dane osobowe nie są przechowywane na zewnętrznych serwerach, przesyłane ani udostępniane stronom trzecim.</p>
+        <h2>2. Zasady przetwarzania danych</h2>
+        <p>Ochrona Twojej prywatności jest naszym najwyższym priorytetem. InExGenie została zaprojektowana jako aplikacja wyłącznie lokalna. Oznacza to: Wszystkie wprowadzone dane finansowe, notatki, kategorie i powiązane multimedia pozostają wyłącznie lokalnie na Twoim własnym urządzeniu. Nie następuje żadne przekazywanie Twoich danych finansowych do nas ani do żadnych innych zewnętrznych serwerów.</p>
     </div>
     <div class="card">
-        <h2>3. Uprawnienia</h2>
+        <h2>3. Zbierane dane i cel</h2>
+        <p>Aplikacja przetwarza następujące kategorie danych wyłącznie w celu świadczenia funkcji aplikacji na Twoim urządzeniu:</p>
         <ul>
-            <li><strong>Lokalizacja:</strong> Używana do rejestrowania miejsca transakcji. Tylko gdy opcja jest włączona.</li>
-            <li><strong>Aparat &amp; Zdjęcia:</strong> Do dodawania zdjęć do wpisów i obrazów kategorii.</li>
-            <li><strong>Face ID / Touch ID:</strong> Do bezpiecznego blokowania aplikacji (tylko weryfikacja biometryczna, żadne dane nie są przechowywane).</li>
+            <li><strong>Dane transakcyjne:</strong> Przychody, wydatki, kwoty, umowy, konta, budżety i skarbonki do osobistej kontroli budżetu.</li>
+            <li><strong>Dane lokalizacyjne (opcjonalnie):</strong> Współrzędne geograficzne do lokalizowania transakcji, jeśli są włączone.</li>
+            <li><strong>Obrazy z aparatu i zdjęcia (opcjonalnie):</strong> Paragony lub niestandardowe obrazy do wizualnego powiązania we wpisach i kategoriach.</li>
+            <li><strong>Dane biometryczne (opcjonalnie):</strong> Face ID / Touch ID do blokady aplikacji (przetwarzanie odbywa się wyłącznie w formie zaszyfrowanej przez system iOS; nie mamy do niego dostępu).</li>
         </ul>
-        <p style="margin-top:10px;">Wszystkie uprawnienia można w dowolnym momencie cofnąć w ustawieniach iOS w sekcji «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>4. Zastrzeżenie prawne</h2>
-        <p>InExGenie jest narzędziem do zarządzania finansami osobistymi. Aplikacja nie stanowi porady finansowej. W przypadku decyzji finansowych zaleca się konsultację z wykwalifikowanym doradcą. Deweloper nie ponosi odpowiedzialności za utratę danych ani błędne obliczenia.</p>
+        <h2>4. Podstawa prawna</h2>
+        <p>Przetwarzanie Twoich danych opiera się na następujących podstawach prawnych w rozumieniu RODO:</p>
+        <ul>
+            <li><strong>Art. 6 ust. 1 lit. b RODO:</strong> Niezbędne do wykonania umowy (świadczenie wszystkich funkcji aplikacji).</li>
+            <li><strong>Art. 6 ust. 1 lit. a RODO:</strong> Twoja wyraźna zgoda na przetwarzanie opcjonalnych danych lokalizacyjnych i multimediów (aparat/zdjęcia) oraz korzystanie z biometrycznych funkcji systemowych.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Eksport &amp; usuwanie danych</h2>
-        <p>Wszystkie dane można wyeksportować lub całkowicie usunąć za pomocą ustawień aplikacji. Odinstalowanie aplikacji usuwa wszystkie lokalne dane.</p>
+        <h2>5. Uprawnienia aplikacji</h2>
+        <p>Aby świadczyć określone funkcje, aplikacja wymaga dostępu do interfejsów systemowych:</p>
+        <ul>
+            <li><strong>Lokalizacja (NSLocationWhenInUseUsageDescription):</strong> Umożliwia opcjonalne przypisywanie lokalizacji do Twoich transakcji.</li>
+            <li><strong>Aparat i zdjęcia (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Umożliwia dodawanie zdjęć paragonów i tworzenie niestandardowych obrazów kategorii.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Umożliwia opcjonalne lokalne blokowanie aplikacji w celu uniemożliwienia nieautoryzowanego dostępu.</li>
+        </ul>
+        <p>Wszystkie uprawnienia można w dowolnym momencie włączyć lub wyłączyć w ustawieniach iOS w sekcji menu «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>6. Zmiany</h2>
-        <p>Niniejsza polityka prywatności może być aktualizowana w razie potrzeby. Istotne zmiany będą komunikowane w aplikacji.</p>
+        <h2>6. Apple jako platforma</h2>
+        <p>Aplikacja jest dystrybuowana za pośrednictwem Apple App Store. Apple przetwarza metadane sklepu, informacje o transakcjach i pobieraniu. Jeśli masz włączone kopie zapasowe iCloud, Twoje lokalne dane aplikacji są domyślnie zapisywane w Twoim osobistym iCloud. Deweloper nie ma dostępu do tych transmisji ani kopii zapasowych. Obowiązują zasady ochrony prywatności firmy Apple Inc. (One Apple Park Way, Cupertino, CA 95014, USA).</p>
     </div>
     <div class="card">
-        <h2>7. Ostatnia aktualizacja</h2>
-        <p>Maj 2026</p>
+        <h2>7. Okres przechowywania</h2>
+        <p>Twoje dane pozostają na Twoim urządzeniu tak długo, jak długo aplikacja jest zainstalowana. Po odinstalowaniu aplikacji wszystkie lokalne dane są bezpowrotnie usuwane z Twojego urządzenia. Jeśli korzystasz z kopii zapasowej iCloud, dane aplikacji są zabezpieczane podczas tworzenia kopii zapasowej i pozostają tam do momentu zaktualizowania lub usunięcia kopii zapasowej.</p>
+    </div>
+    <div class="card">
+        <h2>8. Środki bezpieczeństwa</h2>
+        <p>Chronimy Twoje dane poprzez konsekwentne korzystanie z architektury bezpieczeństwa iOS:</p>
+        <ul>
+            <li><strong>Lokalne szyfrowanie:</strong> Wszystkie dane są szyfrowane za pomocą sprzętowej ochrony danych iOS Data Protection.</li>
+            <li><strong>Sandboxing sieciowy:</strong> Twoje dane finansowe nigdy nie są przesyłane do Internetu.</li>
+            <li><strong>Blokada aplikacji:</strong> Możesz ustawić dodatkową barierę, włączając blokadę biometryczną (Face ID / Touch ID) w ustawieniach aplikacji.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Twoje prawa</h2>
+        <p>Ponieważ wszystkie dane znajdują się wyłącznie na Twoim urządzeniu i nie mamy do nich dostępu, możesz wykonywać swoje prawa bezpośrednio samodzielnie:</p>
+        <ul>
+            <li><strong>Dostęp i przenoszenie danych (Art. 15, 20 RODO):</strong> Możesz samodzielnie wyeksportować wszystkie dane za pomocą ustawień aplikacji (eksport JSON).</li>
+            <li><strong>Usuwanie i sprostowanie (Art. 16, 17 RODO):</strong> Możesz edytować lub usuwać wpisy w aplikacji w dowolnym momencie lub całkowicie zresetować wszystkie dane w ustawieniach aplikacji.</li>
+            <li><strong>Sprzeciw i wycofanie (Art. 21 RODO):</strong> Możesz w dowolnym momencie cofnąć uprawnienia do lokalizacji lub zdjęć za pomocą ustawień iOS.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Prawo do wniesienia skargi</h2>
+        <p>Zgodnie z art. 77 RODO masz prawo wnieść skargę do organu nadzorczego, jeśli uznasz, że przetwarzanie Twoich danych osobowych narusza RODO. Listę organów nadzorczych można znaleźć na odpowiednim portalu krajowym lub w Europejskiej Radzie Ochrony Danych.</p>
+        <div class="alert-placeholder">Wprowadź swój właściwy organ nadzorczy tutaj:</div>
+        <p><strong>Właściwy organ:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Ochrona małoletnich</h2>
+        <p>Korzystanie z aplikacji jest oznaczone w App Store kategorią wiekową 17+. Świadomie nie zbieramy ani nie przetwarzamy danych dzieci poniżej 13 roku życia (zgodność z COPPA). Jeśli dowiesz się, że dziecko poniżej 13 roku życia wprowadziło dane w aplikacji, możesz je całkowicie usunąć, kasując aplikację.</p>
+    </div>
+    <div class="card">
+        <h2>12. Zastrzeżenie prawne</h2>
+        <p>InExGenie jest przeznaczona wyłącznie do osobistej dokumentacji i planowania budżetu. Udostępniane funkcje, obliczenia i statystyki nie stanowią porady finansowej, podatkowej ani prawnej. Wszelkie podejmowane decyzje finansowe są podejmowane na własną odpowiedzialność. Deweloper nie ponosi odpowiedzialności za nieprawidłowe wprowadzanie danych, błędy w obliczeniach lub utratę danych spowodowaną awariami systemu lub wadami sprzętowymi.</p>
+    </div>
+    <div class="card">
+        <h2>13. Zmiany i ostatnia aktualizacja</h2>
+        <p>Niniejsza polityka prywatności może być dostosowywana w celu dostosowania jej do zmieniających się wymogów prawnych lub nowych funkcji aplikacji. Aktualna wersja jest zawsze dostępna pod tym linkiem oraz w aplikacji.</p>
+        <p><strong>Ostatnia aktualizacja:</strong> Maj 2026</p>
     </div>
 </div>
 
@@ -402,36 +880,87 @@
 <div class="lang-content" id="lang-sv">
     <div class="card">
         <h2>1. Ansvarig</h2>
-        <p>Utvecklaren ansvarar för denna app enligt GDPR. Kontakt: [DIN E-POST HÄR]</p>
+        <div class="alert-placeholder">Ange dina kontaktuppgifter här:</div>
+        <p><strong>Utvecklare:</strong> [NAME DES ENTWICKLERS]</p>
+        <p><strong>Adress:</strong> [STRASSE, PLZ ORT, LAND]</p>
+        <p><strong>E-post:</strong> [DEINE E-MAIL]</p>
     </div>
     <div class="card">
-        <h2>2. Datalagring</h2>
-        <p>InExGenie lagrar all data uteslutande lokalt på din enhet. Inga personuppgifter lagras på externa servrar, överförs eller delas med tredje part.</p>
+        <h2>2. Principer för databehandling</h2>
+        <p>Att skydda din integritet är vår högsta prioritet. InExGenie är utformad som en ren lokal applikation. Detta innebär: Alla finansiella data, anteckningar, kategorier och länkade medier som du anger förblir uteslutande lokalt på din egen enhet. Ingen överföring av dina finansiella data till oss eller till andra externa servrar äger rum.</p>
     </div>
     <div class="card">
-        <h2>3. Behörigheter</h2>
+        <h2>3. Insamlade data &amp; syfte</h2>
+        <p>Appen behandlar följande kategorier av data enbart för att tillhandahålla appfunktionerna på din enhet:</p>
         <ul>
-            <li><strong>Plats:</strong> Används för att registrera platsen för transaktioner. Endast när alternativet är aktiverat.</li>
-            <li><strong>Kamera &amp; Foton:</strong> För att lägga till foton till poster och kategoribilder.</li>
-            <li><strong>Face ID / Touch ID:</strong> För att säkert låsa appen (endast biometrisk verifiering, inga data lagras).</li>
+            <li><strong>Transaktionsdata:</strong> Inkomster, utgifter, belopp, kontrakt, konton, budgetar och spargrisar för personlig budgetkontroll.</li>
+            <li><strong>Platsdata (valfritt):</strong> Geografiska koordinater för att lokalisera transaktioner, om aktiverat.</li>
+            <li><strong>Kamerabilder &amp; foton (valfritt):</strong> Kvitton eller anpassade bilder för visuell koppling i poster och kategorier.</li>
+            <li><strong>Biometriska data (valfritt):</strong> Face ID / Touch ID för applås (behandlingen utförs uteslutande krypterad av iOS-systemet; vi har ingen åtkomst till den).</li>
         </ul>
-        <p style="margin-top:10px;">Alla behörigheter kan när som helst återkallas i iOS-inställningar under «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>4. Friskrivning</h2>
-        <p>InExGenie är ett verktyg för personlig ekonomihantering. Appen utgör inte finansiell rådgivning. För ekonomiska beslut rekommenderas att konsultera en kvalificerad rådgivare. Utvecklaren tar inget ansvar för dataförlust eller felaktiga beräkningar.</p>
+        <h2>4. Rättslig grund</h2>
+        <p>Behandlingen av dina data baseras på följande rättsliga grunder i enlighet med GDPR:</p>
+        <ul>
+            <li><strong>Art. 6 (1) (b) GDPR:</strong> Nödvändig för att fullgöra ett avtal (tillhandahållande av appens alla funktioner).</li>
+            <li><strong>Art. 6 (1) (a) GDPR:</strong> Ditt uttryckliga samtycke för behandling av valfria platsdata och medier (kamera/foton) samt användning av biometriska systemfunktioner.</li>
+        </ul>
     </div>
     <div class="card">
-        <h2>5. Dataexport &amp; radering</h2>
-        <p>All data kan exporteras eller raderas helt via appens inställningar. Avinstallation av appen tar bort alla lokala data.</p>
+        <h2>5. App-behörigheter</h2>
+        <p>För att tillhandahålla vissa funktioner kräver appen tillgång till systemgränssnitt:</p>
+        <ul>
+            <li><strong>Plats (NSLocationWhenInUseUsageDescription):</strong> Möjliggör valfri platskoppling för dina transaktioner.</li>
+            <li><strong>Kamera &amp; Foton (NSCameraUsageDescription / NSPhotoLibraryUsageDescription):</strong> Möjliggör tillägg av kvittobilder och skapande av anpassade kategoribilder.</li>
+            <li><strong>Face ID (NSFaceIDUsageDescription):</strong> Möjliggör valfritt lokalt lås av appen för att förhindra obehörig åtkomst.</li>
+        </ul>
+        <p>Alla behörigheter kan när som helst aktiveras eller inaktiveras i iOS-inställningarna under menyalternativet «InExGenie».</p>
     </div>
     <div class="card">
-        <h2>6. Ändringar</h2>
-        <p>Denna integritetspolicy kan uppdateras vid behov. Väsentliga ändringar kommuniceras i appen.</p>
+        <h2>6. Apple som plattform</h2>
+        <p>Appen distribueras via Apple App Store. Apple behandlar butiksmetadata, transaktions- och nedladdningsinformation. Om du har aktiverat iCloud-säkerhetskopiering säkerhetskopieras dina lokala appdata till ditt personliga iCloud som standard. Utvecklaren har ingen åtkomst till dessa överföringar och säkerhetskopior. Apple Inc.s (One Apple Park Way, Cupertino, CA 95014, USA) integritetspolicy gäller.</p>
     </div>
     <div class="card">
-        <h2>7. Senast uppdaterad</h2>
-        <p>Maj 2026</p>
+        <h2>7. Lagringstid</h2>
+        <p>Dina data förblir på din enhet så länge appen är installerad. Om du avinstallerar appen raderas alla lokala data oåterkalleligt från din enhet. Om du använder iCloud-säkerhetskopiering skyddas appdata när säkerhetskopian skapas och förblir där tills säkerhetskopian uppdateras eller raderas.</p>
+    </div>
+    <div class="card">
+        <h2>8. Säkerhetsåtgärder</h2>
+        <p>Vi skyddar dina data genom att konsekvent använda iOS-säkerhetsarkitekturen:</p>
+        <ul>
+            <li><strong>Lokal kryptering:</strong> Alla data är krypterade av maskinvarubaserat iOS Data Protection.</li>
+            <li><strong>Nätverkssandboxing:</strong> Dina finansiella data överförs aldrig till internet.</li>
+            <li><strong>Applås:</strong> Du kan ställa in en ytterligare barriär genom att aktivera biometriskt lås (Face ID / Touch ID) i appinställningarna.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>9. Dina rättigheter</h2>
+        <p>Eftersom alla data ligger uteslutande på din enhet och vi inte har tillgång till dem, kan du utöva dina rättigheter direkt själv:</p>
+        <ul>
+            <li><strong>Tillgång &amp; dataportabilitet (Art. 15, 20 GDPR):</strong> Du kan själv exportera alla data via appinställningarna (JSON-export).</li>
+            <li><strong>Radering &amp; rättelse (Art. 16, 17 GDPR):</strong> Du kan redigera eller radera poster i appen när som helst, eller återställa alla data helt i appinställningarna.</li>
+            <li><strong>Invändning &amp; återkallelse (Art. 21 GDPR):</strong> Du kan när som helst återkalla behörigheter för plats eller foton via iOS-inställningarna.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>10. Rätt att klaga</h2>
+        <p>I enlighet med art. 77 GDPR har du rätt att lämna in ett klagomål till en tillsynsmyndighet om du anser att behandlingen av dina personuppgifter bryter mot GDPR. Du kan hitta en lista över tillsynsmyndigheter under respektive nationell portal eller Europeiska dataskyddsstyrelsen.</p>
+        <div class="alert-placeholder">Ange din behöriga tillsynsmyndighet här:</div>
+        <p><strong>Behörig myndighet:</strong> [ZUSTÄNDIGE DATENSCHUTZBEHÖRDE]</p>
+    </div>
+    <div class="card">
+        <h2>11. Skydd av minderåriga</h2>
+        <p>Användningen av appen är angiven i App Store med en åldersgräns på 17+. Vi samlar inte medvetet in eller behandlar data från barn under 13 år (COPPA-efterlevnad). Om du upptäcker att ett barn under 13 år har angett data i appen kan du ta bort dem helt genom att radera appen.</p>
+    </div>
+    <div class="card">
+        <h2>12. Friskrivning</h2>
+        <p>InExGenie är endast avsedd för personlig dokumentation och budgetplanering. Funktionerna, beräkningarna och statistiken som tillhandahålls utgör inte finansiell, skattemässig eller juridisk rådgivning. Eventuella finansiella beslut du fattar är ditt eget ansvar. Utvecklaren tar inget ansvar för felaktig datainmatning, beräkningsfel eller dataförlust orsakad av systemkrascher eller maskinvarufel.</p>
+    </div>
+    <div class="card">
+        <h2>13. Ändringar &amp; senast uppdaterad</h2>
+        <p>Denna integritetspolicy kan justeras för att anpassas till ändrade lagkrav eller nya appfunktioner. Den aktuella versionen är alltid tillgänglig via denna länk samt i appen.</p>
+        <p><strong>Senest uppdaterad:</strong> Maj 2026</p>
     </div>
 </div>
 
